@@ -48,7 +48,7 @@ private:
     std::shared_ptr<VMTLine> _line;
 
     void RightShiftActiveLineEdit(int currentIndex);
-    bool isShiftFromType = true; // Input from keyboard, not from Right, RightPage, etc.
+    bool isShiftFromType = true; // Input from keyboard, not from Right, RightPage, Repaint, etc.
 
 private slots:
     void onEditChanged(QString text);

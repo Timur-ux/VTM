@@ -80,11 +80,13 @@ void FormLineWidget::Repaint(){
 }
 
 void  FormLineWidget::FillLineEdit(){
- for(long i=0;i<=(long)_count;i++){
-     _line_edit[i].setText(QString(QChar(_line->GetValueAt(_position+i))));
-     if(_line->IsMachinePosition(_position+i)) _line_edit[i].setStyleSheet("QLineEdit { background: #01547a; selection-background-color:#01547a; color:#ffffff }");
-                                    else _line_edit[i].setStyleSheet("");
- }
+    isShiftFromType = false;
+    for(long i=0;i<=(long)_count;i++){
+        _line_edit[i].setText(QString(QChar(_line->GetValueAt(_position+i))));
+        if(_line->IsMachinePosition(_position+i)) _line_edit[i].setStyleSheet("QLineEdit { background: #01547a; selection-background-color:#01547a; color:#ffffff }");
+                                else _line_edit[i].setStyleSheet("");
+    }
+    isShiftFromType = true;
 }
 
 bool FormLineWidget::eventFilter(QObject* object, QEvent* event){
@@ -139,7 +141,6 @@ void FormLineWidget::onEditChanged(QString text){
            std::shared_ptr<VMTAlphabit> alphabit = _line->GetAlphabit();
            if(
                alphabit->IsSign(text[0].toLatin1()) and
-               not(alphabit->IsLambda(text[0].toLatin1())) and
                isShiftFromType and
                _line_edit[index].hasFocus()
             ) {

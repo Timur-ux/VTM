@@ -14,7 +14,7 @@ public:
 
     virtual void BeforeChange(std::shared_ptr<UIStateData> state_data) = 0;
     virtual void AfterUndo(std::shared_ptr<UIStateData> state_data) = 0;
-    virtual void OnLoaded() {};
+    virtual void OnLoaded() {}
 
 };
 
